@@ -12,9 +12,31 @@
   <script>
     window.console = window.console || function(t) {};
   </script>
+  <script type="text/javascript" src="js/login.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
 </head>
 
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=897178380378601";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+  <section class="intro">  
+    <div class="content">
+      <a onclick="fb_login();">
+        <div class="container">
+          <div class="fb-icon-bg"></div>
+          <div class="fb-bg"></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
 
   <div id="clouds">
     <!--<div class="cloud x1"></div>
@@ -26,12 +48,6 @@
 
   <div id="snow">
   </div>
-
-  <script>
-    if (document.location.search.match(/type=embed/gi)) {
-      window.parent.postMessage("resize", "*");
-    }
-  </script>
 
 
 </body>
