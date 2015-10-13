@@ -36,14 +36,16 @@ package
 			Security.loadPolicyFile("https://fbcdn-profile-a.akamaihd.net/crossdomain.xml");
 			//Security.loadPolicyFile("http://profile.ak.fbcdn.net/crossdomain.xml");
 			this.addEventListener("addedToStage", init);
-			ExternalInterface.call("console.log", stage.loaderInfo.parameters.avatar);
+			ExternalInterface.call("console.log", stage.loaderInfo.parameters.__gda__);
 
 		}
 		
 		function init(e:Event = null) {
 			
 			var temp_avatar_url:String = stage.loaderInfo.parameters.avatar;
-			temp_avatar_url += '&';
+			temp_avatar_url += '&oe=';
+			temp_avatar_url += stage.loaderInfo.parameters.oe;
+			temp_avatar_url += '&__gda__=';
 			temp_avatar_url += stage.loaderInfo.parameters.__gda__;
 			nome = new TextField();
 			nome.width = 150;
