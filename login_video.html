@@ -38,7 +38,10 @@
 
   window.fbAsyncInit = function() {
   FB.init({
+    //natal.dev
     appId      : '897178380378601',
+    //kaitoqueiroz.com
+    //appId      : '1622566361341537',
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
@@ -83,21 +86,7 @@
             if (response2 && !response2.error) {
               console.log(response)
               console.log(response2)
-              document.getElementById('flashContent').innerHTML = '<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" width="1280" height="720" id="natal_gazin" align="middle">'
-
-                 document.getElementById('flashContent').innerHTML +=  '<param name="movie" value="natal_gazin.swf?teste=awefawefa">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="quality" value="high">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="bgcolor" value="#ffffff">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="play" value="true">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="loop" value="true">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="wmode" value="window">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="scale" value="showall">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="menu" value="true">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="devicefont" value="false">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="salign" value="">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="allowScriptAccess" value="always">'
-                  document.getElementById('flashContent').innerHTML +=' <param name="FlashVars" value="one=1&two=2" />'
-                  document.getElementById('flashContent').innerHTML +=' <!--[if !IE]>-->'
+              document.getElementById('flashContent').innerHTML = ''
                   document.getElementById('flashContent').innerHTML +=' <object type="application/x-shockwave-flash" data="natal_gazin.swf?nome='+response.name+'&avatar='+response2.data.url+'" width="1280" height="720">'
                   document.getElementById('flashContent').innerHTML +='   <param name="movie" value="natal_gazin.swf?teste='+response2+'">'
                   document.getElementById('flashContent').innerHTML +='   <param name="quality" value="high">'
@@ -110,14 +99,8 @@
                   document.getElementById('flashContent').innerHTML +='   <param name="devicefont" value="false">'
                   document.getElementById('flashContent').innerHTML +='   <param name="salign" value="">'
                   document.getElementById('flashContent').innerHTML +='   <param name="allowScriptAccess" value="always">'
-                  document.getElementById('flashContent').innerHTML +=' <!--<![endif]-->'
-                  document.getElementById('flashContent').innerHTML +='   <a href="http://www.adobe.com/go/getflash">'
-                  document.getElementById('flashContent').innerHTML +='     <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Obter Adobe Flash Player">'
                   document.getElementById('flashContent').innerHTML +='   </a>'
-                  document.getElementById('flashContent').innerHTML +=' <!--[if !IE]>-->'
                   document.getElementById('flashContent').innerHTML +=' </object>'
-                   document.getElementById('flashContent').innerHTML +=' <!--<![endif]-->'
-                document.getElementById('flashContent').innerHTML +=' </object>'
             }
           }
       );

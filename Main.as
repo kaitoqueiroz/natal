@@ -43,7 +43,8 @@ package
 		function init(e:Event = null) {
 			
 			var temp_avatar_url:String = stage.loaderInfo.parameters.avatar;
-			
+			temp_avatar_url += '&';
+			temp_avatar_url += stage.loaderInfo.parameters.__gda__;
 			nome = new TextField();
 			nome.width = 150;
 			nome.height = 72;
@@ -79,7 +80,7 @@ package
 			var context: LoaderContext = new LoaderContext();
 			context.checkPolicyFile = true;
 			ExternalInterface.call("console.log",'temp_avatar_url');
-			loader.load(new URLRequest('avatar.jpg'),context);
+			loader.load(new URLRequest(temp_avatar_url),context);
 
 
 			
