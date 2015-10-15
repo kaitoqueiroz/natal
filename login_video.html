@@ -5,6 +5,36 @@
 <meta charset="UTF-8">
 </head>
 <body>
+
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();">
+</fb:login-button>
+<div id="teste"></div>
+<div id="status"></div>
+<div id="flashContent">
+    <object type="application/x-shockwave-flash" id="NatalGazinVideo" name="NatalGazinVideo" data="natal_gazin.swf" flashvars="nome=Adriano Lobo&amp;avatar=https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c17.0.100.100/p100x100/164076_100804753329119_3140856_n.jpg?oh=efd6317e3d8a812ba0f4f571f49edd11&amp;oe=569110B8&amp;__gda__=1451958321_b1b87fe0f9f58cd690d96ef6e328ca8f" width="1280" height="720">
+    <param name="movie" value="natal_gazin.swf?">
+    <param name="quality" value="high">
+    <param name="bgcolor" value="#ffffff">
+    <param name="play" value="true">
+    <param name="loop" value="true">
+    <param name="wmode" value="window">
+    <param name="scale" value="showall">
+    <param name="menu" value="true">
+    <param name="FlashVars" value="one=1&amp;two=2">
+    <param name="devicefont" value="false">
+    <param name="salign" value="">
+    <param name="allowScriptAccess" value="always"> 
+    </object>
+</div>
+
+
 <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -80,46 +110,21 @@
   function testAPI(dados_login) {
     console.log(dados_login);
     FB.api('/me', function(response) {
+      document['NatalGazinVideo'].setNome(response.name);
       FB.api(
           "/"+response.id+"/picture?width=100&height=100",
           function (response2) {
             if (response2 && !response2.error) {
+              document['NatalGazinVideo'].setAvatar(response2.data.url);
+              document['NatalGazinVideo'].playVideo();
               console.log(response)
               console.log(response2)
-              document.getElementById('flashContent').innerHTML = ''
-                  document.getElementById('flashContent').innerHTML +=' <object type="application/x-shockwave-flash" data="natal_gazin.swf?nome='+response.name+'&avatar='+response2.data.url+'" width="1280" height="720">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="movie" value="natal_gazin.swf?teste='+response2+'">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="quality" value="high">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="bgcolor" value="#ffffff">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="play" value="true">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="loop" value="true">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="wmode" value="window">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="scale" value="showall">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="menu" value="true">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="devicefont" value="false">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="salign" value="">'
-                  document.getElementById('flashContent').innerHTML +='   <param name="allowScriptAccess" value="always">'
-                  document.getElementById('flashContent').innerHTML +='   </a>'
-                  document.getElementById('flashContent').innerHTML +=' </object>'
             }
           }
       );
     });
   }
 </script>
-
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
-
-<fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();">
-</fb:login-button>
-<div id="status"></div>
-<div id="flashContent">
-
-</div>
 
 </body>
 </html>
