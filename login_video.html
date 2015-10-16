@@ -111,6 +111,7 @@
     console.log(dados_login);
     FB.api('/me', function(response) {
       document['NatalGazinVideo'].setNome(response.name);
+      document['NatalGazinVideo'].setDesejos(['Geladeira','Televisão LED','Fogão']);
       FB.api(
           "/"+response.id+"/picture?width=100&height=100",
           function (response2) {
