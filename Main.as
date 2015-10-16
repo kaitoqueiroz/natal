@@ -132,7 +132,7 @@ package
 				celmsg_dist.alpha = 0;
 				telaSistema_dist.alpha = 0;
 				video.playVideo();	
-				video.volume = 0;
+				video.volume = 1;
 			}
 		}
 		
