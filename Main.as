@@ -15,6 +15,7 @@ package
 	import flash.text.TextFieldAutoSize;
 	import ws.outset.display.DistortImageWrapper;
 	import flash.system.Security;
+	import flash.events.MouseEvent;
 	import flash.external.ExternalInterface;
 	
 	/**
@@ -45,8 +46,6 @@ package
 			Security.allowInsecureDomain('*');
 			//Security.loadPolicyFile("http://profile.ak.fbcdn.net/crossdomain.xml");
 			this.addEventListener("addedToStage", init);
-			ExternalInterface.call("console.log", LoaderInfo(this.root.loaderInfo).parameters['one']);
-			ExternalInterface.call("console.log", root.loaderInfo.parameters.one);
 			ExternalInterface.addCallback("setAvatar", setAvatar);
 			ExternalInterface.addCallback("setNome", setNome);
 			ExternalInterface.addCallback("playVideo", playVideo);
@@ -67,47 +66,73 @@ package
 				"volume":1
 			});
 
-
+		
 			video.load();
-			
 			celmsg_mc = new CelMsg();
 			telaSistema = new TelaSistema();
 			baseListaCel = new BaseListaCel();
 			
-			setEmail('loremipsom@gmail.com');
+			//setEmail('loremipsom@gmail.com');
 			
 		}
 		
 		public function setDesejos(desejos:Array) {
+
+			var itemLista:MovieClip = new ItemListaCel();
+			
+			var texto_inicial = new TextField();
+			texto_inicial.multiline = true;
+			texto_inicial.wordWrap = true;
+			texto_inicial.autoSize = TextFieldAutoSize.CENTER;
+			texto_inicial.width = 171;
+			texto_inicial.height = 49;
+			texto_inicial.text = 'Queridos Daniel e Papai Noel segue a minha lista de desejos pra viver o natal mais azul do Brasil na Gazin:';
+			var nomeFormat = new TextFormat('Arial', 12, 0x000000);
+			nomeFormat.align = 'left';
+			texto_inicial.setTextFormat(nomeFormat);
+			baseListaCel.addChild(texto_inicial);
+			texto_inicial.x = 29;
+			texto_inicial.y = 100;	
+			
 			for (var i:int = 0; i < desejos.length; i++) 
 			{
-				var itemLista:MovieClip = new ItemListaCel();
 				
 				var produto = new TextField();
-				produto.width = 196;
-				produto.height = 20;
-				produto.text = desejos[i];
-				var nomeFormat = new TextFormat('Arial', 14, 0x000000);
+				produto.width = 171;
+				produto.height = 18;
+				produto.text = '- '+desejos[i];
+				nomeFormat = new TextFormat('Arial', 12, 0x000000);
 				nomeFormat.align = 'left';
 				produto.setTextFormat(nomeFormat);
-				itemLista.addChild(produto);
-				produto.x = 63;
-				produto.y = 12;
+				baseListaCel.addChild(produto);
+				produto.x = 28;
+				produto.y = 163+(i*18);
 				
-				var numero = new TextField();
-				numero.width = 28;
-				numero.height = 25;
-				numero.text = i+1;
-				nomeFormat = new TextFormat('Arial', 18, 0x000000);
-				nomeFormat.align = 'center';
-				numero.setTextFormat(nomeFormat);
-				itemLista.addChild(numero);
-				numero.x = 19;
-				numero.y = 13;
+				//var produto = new TextField();
+				//produto.width = 196;
+				//produto.height = 20;
+				//produto.text = desejos[i];
+				//var nomeFormat = new TextFormat('Arial', 14, 0x000000);
+				//nomeFormat.align = 'left';
+				//produto.setTextFormat(nomeFormat);
+				//itemLista.addChild(produto);
+				//produto.x = 63;
+				//produto.y = 12;
 				
-				baseListaCel.addChild(itemLista);
-				itemLista.x = 0;
-				itemLista.y = (i * 53) + 94;
+				//var numero = new TextField();
+				//numero.width = 28;
+				//numero.height = 25;
+				//numero.text = i+1;
+				//nomeFormat = new TextFormat('Arial', 18, 0x000000);
+				//nomeFormat.align = 'center';
+				//numero.setTextFormat(nomeFormat);
+				//itemLista.addChild(numero);
+				//numero.x = 19;
+				//numero.y = 13;
+				
+				//baseListaCel.addChild(itemLista);
+				//itemLista.x = 0;
+				//itemLista.y = (i * 53) + 94;
 				
 				
 			}
@@ -132,8 +157,20 @@ package
 				celmsg_dist.alpha = 0;
 				telaSistema_dist.alpha = 0;
 				video.playVideo();	
+				stage.addEventListener(MouseEvent.CLICK, pausar);
+				
 				video.volume = 1;
 			}
+		}
+		
+		public function pausar(e) {
+
+			if(video.videoPaused){
+				video.playVideo();
+			}else {	
+				video.pauseVideo();
+			}
+			
 		}
 		
 		public function setEmail(value) {
@@ -176,16 +213,27 @@ package
 			nomeSistema.x = 128;
 			nomeSistema.y = 546;
 			
-			var nomeListaCel = new TextField();
-			nomeListaCel.width = 191;
-			nomeListaCel.height = 20;
-			nomeListaCel.text = value;
-			nomeFormat = new TextFormat('Arial', 16, 0xffffff);
-			nomeFormat.align = 'left';
-			nomeListaCel.setTextFormat(nomeFormat);
-			baseListaCel.addChild(nomeListaCel);
-			nomeListaCel.x = 63;
-			nomeListaCel.y = 50;
+			//var nomeListaCel = new TextField();
+			//nomeListaCel.width = 191;
+			//nomeListaCel.height = 20;
+			//nomeListaCel.text = value;
+			//nomeFormat = new TextFormat('Arial', 16, 0xffffff);
+			//nomeFormat.align = 'left';
+			//nomeListaCel.setTextFormat(nomeFormat);
+			//baseListaCel.addChild(nomeListaCel);
+			//nomeListaCel.x = 63;
+			//nomeListaCel.y = 50;
+			
+			var nome_titulo = new TextField();
+			nome_titulo.width = 127;
+			nome_titulo.height = 22;
+			nome_titulo.text = value;
+			nomeFormat = new TextFormat('Arial', 14, 0x000000);
+			nomeFormat.align = 'center';
+			nome_titulo.setTextFormat(nomeFormat);
+			baseListaCel.addChild(nome_titulo);
+			nome_titulo.x = 83;
+			nome_titulo.y = 18;
 			
 			
 			return true;
@@ -228,27 +276,27 @@ package
 			circle.x = avatar.x+36;
 			circle.y = avatar.y + 36;
 			
-			var avatarListaCel:Bitmap = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
-			avatarListaCel.width = 40;
-			avatarListaCel.height = 40;
-			avatarListaCel.smoothing = true;
+			//var avatarListaCel:Bitmap = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
+			//avatarListaCel.width = 40;
+			//avatarListaCel.height = 40;
+			//avatarListaCel.smoothing = true;
 				
-			baseListaCel.addChild(avatarListaCel);
+			//baseListaCel.addChild(avatarListaCel);
 			
-			var circleListaCel:Sprite = new Sprite();
-			circleListaCel.graphics.lineStyle(1, 0x000000); 
-			circleListaCel.graphics.beginFill(0x0000ff); 
-			circleListaCel.graphics.drawCircle(0, 0, 20); 
-			circleListaCel.graphics.endFill(); 
-			baseListaCel.addChild(circleListaCel);
-			avatarListaCel.cacheAsBitmap = true;
-			circleListaCel.cacheAsBitmap = true;
-			avatarListaCel.mask = circleListaCel;
+			//var circleListaCel:Sprite = new Sprite();
+			//circleListaCel.graphics.lineStyle(1, 0x000000); 
+			//circleListaCel.graphics.beginFill(0x0000ff); 
+			//circleListaCel.graphics.drawCircle(0, 0, 20); 
+			//circleListaCel.graphics.endFill(); 
+			//baseListaCel.addChild(circleListaCel);
+			//avatarListaCel.cacheAsBitmap = true;
+			//circleListaCel.cacheAsBitmap = true;
+			//avatarListaCel.mask = circleListaCel;
 
-			avatarListaCel.x = 13;
-			avatarListaCel.y = 47;
-			circleListaCel.x = avatarListaCel.x+20;
-			circleListaCel.y = avatarListaCel.y + 20;
+			//avatarListaCel.x = 13;
+			//avatarListaCel.y = 47;
+			//circleListaCel.x = avatarListaCel.x+20;
+			//circleListaCel.y = avatarListaCel.y + 20;
 
 		}
 		
