@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <meta name="google" value="notranslate">
 
-  <title>CodePen - Full screen sections with CSS</title>
+  <title>Gazin - O natal mais azul do Brasil!</title>
 
   <link rel="stylesheet" type="text/css" href="css/main.css">
-  <link rel="stylesheet" type="text/css" href="css/envelope.css">
 
   <script>
     window.console = window.console || function(t) {};
@@ -25,8 +24,9 @@
   js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=897178380378601";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
-
-  <section class="intro">  
+  <img class="logo_natal" src="img/logo_natal.png">
+  <img class="logo_gazin" src="img/logo_gazin.png">
+  <!--<section class="intro">
     <div class="content">
       <a onclick="fb_login();">
         <div class="container">
@@ -35,21 +35,116 @@
         </div>
       </a>
     </div>
-  </section>
+  </section>-->
+  <div class="back">
+    <!--<div class="ipad-head">12:00</div>-->
+    <div class="toolbar">Lista de Desejos</div>
+    <div class="scroll" id="scroll">
+      <ul>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox1" name="checkbox[]"  />
+            <label for="checkbox1">Televisão de led</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox2" name="checkbox[]"  />
+            <label for="checkbox2">Refrigerador duplex</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox3" name="checkbox[]"  />
+            <label for="checkbox3">Ar condicionado</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox4" name="checkbox[]"  />
+            <label for="checkbox4">Lavadora de roupas</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox5" name="checkbox[]"  />
+            <label for="checkbox5">Smartphone</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox6" name="checkbox[]"  />
+            <label for="checkbox6">Tablet</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox7" name="checkbox[]"  />
+            <label for="checkbox7">Notebook</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox8" name="checkbox[]"  />
+            <label for="checkbox8">Video-game</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox9" name="checkbox[]"  />
+            <label for="checkbox9">Cama box</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox10" name="checkbox[]"  />
+            <label for="checkbox10">Guarda-roupas</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox11" name="checkbox[]"  />
+            <label for="checkbox11">Jogo de sofá</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox12" name="checkbox[]"  />
+            <label for="checkbox12">Jogo de cozinha</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox13" name="checkbox[]"  />
+            <label for="checkbox13">Liquidificador</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox14" name="checkbox[]"  />
+            <label for="checkbox14">Batedeira</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox15" name="checkbox[]"  />
+            <label for="checkbox15">Cafeteira</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox16" name="checkbox[]"  />
+            <label for="checkbox16">Secador de cabelos</label>
+          </li>
+          <li>
+            <input class="checkbox2" type="checkbox" id="checkbox17" name="checkbox[]"  />
+            <label for="checkbox17">Prancha de cabelos</label>
+          </li>
+      </ul>
+    </div>
+      
+    <div class='facebook-btn'>
+      <div class="fb-icon-bg"></div>
+      <div class="fb-bg"></div>
+    </div>
+  </div>
 
 
-  <div id="clouds">
-    <!--<div class="cloud x1"></div>
+  <!--<div id="clouds">
+    <div class="cloud x1"></div>
     <div class="cloud x2"></div>
     <div class="cloud x3"></div>
     <div class="cloud x4"></div>
-    <div class="cloud x5"></div>-->
-  </div>
+    <div class="cloud x5"></div>
+  </div>-->
 
   <div id="snow">
   </div>
+  <div class="fullscreen-bg">
+    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+        <source src="video/bg_video.webm" type="video/webm">
+        <source src="video/bg_video.mp4" type="video/mp4">
+        <source src="video/bg_video.ogv" type="video/ogg">
+    </video>
+  </div>
 
-
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("li").click(function (e) {
+        var inputID = $(this).find("label").attr("for");
+        $('#' + inputID).click();
+    });
+  });
+</script>
 </body>
 </html>
 

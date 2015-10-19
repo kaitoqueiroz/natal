@@ -2,6 +2,8 @@
 
 /*The container will also serve as the SKY*/
 @import url(http://fonts.googleapis.com/css?family=Oswald);
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 
 *{ margin: 0; padding: 0;}
 
@@ -186,11 +188,12 @@ body {
 }
 
 .fb-bg {
-  background: #3b5998;
+  background: #3b5998 none repeat scroll 0 0;
   display: block;
   height: 37px;
   margin: 0 0 30px 41px;
-  width: 166px;
+  padding: 0 18px;
+  width: 190px;
 }
 
 .fb-bg:after {
@@ -221,7 +224,193 @@ body {
   z-index: 100;
 }
 .container {
+  background-image: url("../img/ipad_image.png");
   margin:20% auto;
   height:38px;
   width:207px;
+}
+.logo_natal{
+  position: absolute;
+  margin: 3%;
+  width: 150px;
+}
+.logo_gazin{
+  bottom: 0;
+  margin: 1% 2%;
+  position: absolute;
+  right: 0;
+  width: 115px;
+}
+.foto_daniel_noel{
+  left: 50%;
+  margin-left: -210px;
+  width: 450px;
+  position: absolute;
+}
+
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+}
+
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .fullscreen-bg {
+    background: url('../img/videoframe.jpg') center center / cover no-repeat;
+  }
+
+  .fullscreen-bg__video {
+    display: none;
+  }
+}
+
+.back {    
+    font-family:helvetica neue,helvetica,arial,sans-serif;
+    top: 50%;
+    left: 50%;
+    display: block;
+    position: absolute;
+    background: url('../img/ipad_image.png') no-repeat;
+    background-size: 300px 417px;
+    width: 300px;
+    height: 417px;
+    margin-top: -208.5px; /* HALF OF THE HEIGHT */
+    margin-left: -153px; /* HALF OF THE WIDTH */
+    padding: 41px 16px;
+    z-index: 9999999999;
+}
+.ipad-head{
+  background-color: black;
+  border-radius: 4px 4px 0 0;
+  color: white;
+  font-size: 10px;
+  padding: 2px;
+  text-align: center;
+  width: 263px;
+}
+.facebook-btn{
+  margin-left: 0;
+  margin-top: 0;
+}
+
+.scroll
+{
+  width: 267px;
+  font-size:14px;
+  height: 245px;
+  font-weight:200;
+  overflow: auto;
+}
+
+.toolbar
+{
+  background: #222 none repeat scroll 0 0;
+  color: #fff;
+  font-weight: bold;
+  height: 20px;
+  padding: 1em;
+  text-align: center;
+  text-shadow: 0 -2px 1px rgba(0, 0, 0, 0.2);
+  width: 235px;
+}
+
+footer, if_header_the_same {
+  -webkit-box-sizing: border-box;
+  background-color:#c27b00;
+  position:absolute;
+  z-index:2;
+  bottom:0; left:0;
+  width:100%;
+  height:48px;
+  padding:0;
+  border-top:1px solid #444;
+}
+footer{
+  background-color: #c27b00;
+  border-top: 1px solid #444;
+  height: 48px;
+  left: 16px;
+  padding: 0;
+  position: absolute;
+  top: 326px;
+  width: 268px;
+  z-index: 2;
+}
+
+ul
+{
+  padding: 0;
+  margin: 0;
+}
+
+li
+{
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+li:hover
+{
+  background-color: #eee;
+}
+
+input[type=checkbox] + label:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    font-size: 19px;
+}
+
+input[type="checkbox"]{
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #c8c6c6;
+    width: 15px;
+    height: 15px;
+    border-radius: 2px;
+    margin: 0 5px 0 0;
+}
+
+input[type=checkbox].checkbox2 {
+    display: none;
+}
+
+input[type=checkbox].checkbox2 + label:before { 
+    content: "\f096"; 
+    letter-spacing: 10px;
+}
+
+input[type=checkbox].checkbox2:checked + label:before {
+    content: '\f046';
+}
+
+input[type="checkbox"]:focus{
+    outline: none;
 }
