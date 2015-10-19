@@ -25,15 +25,21 @@ package
 	public class Main extends MovieClip 
 	{
 		public var video:VideoLoader;
+		public var comentarios:MovieClip;
 		public var celmsg_mc:MovieClip;
 		public var telaSistema:MovieClip;
 		public var baseListaCel:MovieClip;
+		public var facebookCapa:MovieClip;
+		public var facebookFoto:MovieClip;
+		public var facebookFoto_dist:DistortImageWrapper;
+		public var facebookCapa_dist:DistortImageWrapper;
 		public var baseListaCel_dist:DistortImageWrapper;
 		public var telaSistema_dist:DistortImageWrapper;
 		public var celmsg_dist:DistortImageWrapper;
 		public var nome:TextField;
 		public var nomeSistema:TextField;
 		public var isAvatarReady:Boolean = false;
+		public var isFotoPerfilReady:Boolean = false;
 		public var desejos:Array = [];
 
 		
@@ -49,7 +55,8 @@ package
 			ExternalInterface.addCallback("setAvatar", setAvatar);
 			ExternalInterface.addCallback("setNome", setNome);
 			ExternalInterface.addCallback("playVideo", playVideo);
-			ExternalInterface.addCallback("setDesejos",setDesejos);
+			ExternalInterface.addCallback("setDesejos", setDesejos);
+			ExternalInterface.addCallback("setFotoPerfil",setFotoPerfil);
 
 		}
 		
@@ -71,6 +78,8 @@ package
 			celmsg_mc = new CelMsg();
 			telaSistema = new TelaSistema();
 			baseListaCel = new BaseListaCel();
+			facebookCapa = new FacebookCapa();
+			facebookFoto = new FacebookFoto();
 			
 			//setEmail('loremipsom@gmail.com');
 			
@@ -106,7 +115,7 @@ package
 				produto.setTextFormat(nomeFormat);
 				baseListaCel.addChild(produto);
 				produto.x = 28;
-				produto.y = 163+(i*18);
+				produto.y = 173+(i*18);
 				
 				//var produto = new TextField();
 				//produto.width = 196;
@@ -144,22 +153,28 @@ package
 		}
 		
 		public function checkReady(e) {
-			if (isAvatarReady) {
+			if (isAvatarReady && isFotoPerfilReady) {
 				removeEventListener(Event.ENTER_FRAME, checkReady);
 				video.addEventListener("playProgress", checkTime);
 				baseListaCel_dist = new DistortImageWrapper(baseListaCel,5,5);
 				celmsg_dist = new DistortImageWrapper(celmsg_mc, 5, 5);
-				telaSistema_dist = new DistortImageWrapper(telaSistema,5,5);
+				telaSistema_dist = new DistortImageWrapper(telaSistema, 5, 5);
+				facebookCapa_dist = new DistortImageWrapper(facebookCapa, 10, 10);
+				facebookFoto_dist = new DistortImageWrapper(facebookFoto,10,10);
 				stage.addChild(baseListaCel_dist);
 				stage.addChild(celmsg_dist);
 				stage.addChild(telaSistema_dist);
+				stage.addChild(facebookCapa_dist);
+				stage.addChild(facebookFoto_dist);
+				facebookFoto_dist.alpha = 0;
+				facebookCapa_dist.alpha = 0;
 				baseListaCel_dist.alpha = 0;
 				celmsg_dist.alpha = 0;
 				telaSistema_dist.alpha = 0;
 				video.playVideo();	
 				stage.addEventListener(MouseEvent.CLICK, pausar);
 				
-				video.volume = 1;
+				video.volume = 0;
 			}
 		}
 		
@@ -213,6 +228,53 @@ package
 			nomeSistema.x = 128;
 			nomeSistema.y = 546;
 			
+			var nomeFaceCapa = new TextField();
+			nomeFaceCapa.width = 514;
+			nomeFaceCapa.height = 38;
+			nomeFaceCapa.text = value;
+			nomeFormat = new TextFormat('Arial', 24, 0xffffff);
+			nomeFormat.align = 'left';
+			nomeFaceCapa.setTextFormat(nomeFormat);
+			facebookCapa.addChild(nomeFaceCapa);
+			nomeFaceCapa.x = 200;
+			nomeFaceCapa.y = 370;
+			
+			
+			var nomeFacePesquisa = new TextField();
+			nomeFacePesquisa.width = 315;
+			nomeFacePesquisa.height = 25;
+			nomeFacePesquisa.text = value;
+			var nomeFaceFormat = new TextFormat('Arial', 20, 0xffffff);
+			nomeFaceFormat.align = 'left';
+			nomeFacePesquisa.setTextFormat(nomeFaceFormat);
+			facebookCapa.addChild(nomeFacePesquisa);
+			nomeFacePesquisa.x = 242;
+			nomeFacePesquisa.y = 30;
+			
+			var nomeFaceFotoPesquisa = new TextField();
+			nomeFaceFotoPesquisa.width = 315;
+			nomeFaceFotoPesquisa.height = 25;
+			nomeFaceFotoPesquisa.text = value;
+			var nomeFaceFotoFormat = new TextFormat('Arial', 20, 0xffffff);
+			nomeFaceFotoFormat.align = 'left';
+			nomeFaceFotoPesquisa.setTextFormat(nomeFaceFotoFormat);
+			facebookFoto.addChild(nomeFaceFotoPesquisa);
+			nomeFaceFotoPesquisa.x = 242;
+			nomeFaceFotoPesquisa.y = 30;
+			
+			var breadcumbFotosPerfil_txt = 'Retornar ao álbum · Fotos de ' + value+'· Linha do Tempo de ' + value;
+			
+			var breadcumbFotosPerfil = new TextField();
+			breadcumbFotosPerfil.width = 694;
+			breadcumbFotosPerfil.height = 17;
+			breadcumbFotosPerfil.text = breadcumbFotosPerfil_txt;
+			var breadcumbFotosPerfilFormat = new TextFormat('Arial', 18, 0x3b5998);
+			breadcumbFotosPerfilFormat.align = 'left';
+			breadcumbFotosPerfil.setTextFormat(breadcumbFotosPerfilFormat);
+			facebookFoto.addChild(breadcumbFotosPerfil);
+			breadcumbFotosPerfil.x = 64;
+			breadcumbFotosPerfil.y = 104;
+			
 			//var nomeListaCel = new TextField();
 			//nomeListaCel.width = 191;
 			//nomeListaCel.height = 20;
@@ -239,6 +301,17 @@ package
 			return true;
 		}
 		
+		
+		public function setFotoPerfil(url) {
+			var loader:Loader = new Loader();
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onCompleteFotoPerfil);
+			var context: LoaderContext = new LoaderContext();
+			context.checkPolicyFile = true;
+			ExternalInterface.call("console.log",'temp_avatar_url');
+			loader.load(new URLRequest(url), context);
+			return true
+		}
+		
 		public function setAvatar(url) {
 			var loader:Loader = new Loader();
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onCompleteAvatar);
@@ -249,6 +322,28 @@ package
 			return true
 		}
 		
+		public function onCompleteFotoPerfil(event:Event){
+			isFotoPerfilReady = true;
+			var extra_x = 0;
+			var proporcao = 0;
+			var fotoPerfil:Bitmap = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
+			if(fotoPerfil.width>fotoPerfil.height){
+				proporcao = fotoPerfil.height / fotoPerfil.width;
+				fotoPerfil.width = 636;
+				fotoPerfil.height = fotoPerfil.width * proporcao;
+			}else {
+				proporcao = fotoPerfil.width / fotoPerfil.height;
+				
+				fotoPerfil.height = 636;
+				fotoPerfil.width = fotoPerfil.height * proporcao;
+				extra_x = (636 - fotoPerfil.width) / 2;
+				
+			}
+			fotoPerfil.smoothing = true;
+			facebookFoto.addChild(fotoPerfil);
+			fotoPerfil.x = 66+extra_x;
+			fotoPerfil.y = 139;
+		}
 		
 		function onCompleteAvatar (event:Event):void
 		{
@@ -297,6 +392,27 @@ package
 			//avatarListaCel.y = 47;
 			//circleListaCel.x = avatarListaCel.x+20;
 			//circleListaCel.y = avatarListaCel.y + 20;
+			
+			var fotoFace = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
+			fotoFace.width = 130;
+			fotoFace.height = 130;
+			fotoFace.smoothing = true;
+				
+			facebookCapa.addChild(fotoFace);
+
+			fotoFace.x = 57;
+			fotoFace.y = 349;
+			
+			
+			var avatarComent = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
+			avatarComent.width = 50;
+			avatarComent.height = 50;
+			avatarComent.smoothing = true;
+				
+			comentarios.addChild(avatarComent);
+
+			avatarComent.x = 0;
+			avatarComent.y = 0;
 
 		}
 		
@@ -317,24 +433,34 @@ package
 				baseListaCel_dist.alpha = 0.8;
 				baseListaCel_dist.blendMode = "multiply";
 				baseListaCel_dist.tlX = 927.25; baseListaCel_dist.tlY = 211.7; baseListaCel_dist.trX = 1173.15; baseListaCel_dist.trY = 251; baseListaCel_dist.blX = 864.75; baseListaCel_dist.blY = 652.1; baseListaCel_dist.brX = 1108.65; baseListaCel_dist.brY = 696.45;
+			}else if (video.videoTime >= 23 && video.videoTime <= 28.196) 
+			{
+				facebookCapa_dist.alpha = 0.8;
+				facebookCapa_dist.blendMode = "multiply";
+				facebookCapa_dist.tlX=710.65;facebookCapa_dist.tlY=14.25;facebookCapa_dist.trX=1167.15;facebookCapa_dist.trY=81.35;facebookCapa_dist.blX=623.2;facebookCapa_dist.blY=612.05;facebookCapa_dist.brX=1057.35;facebookCapa_dist.brY=705.6
+			}else if (video.videoTime >= 30.954 && video.videoTime <= 33.704) 
+			{
+				facebookFoto_dist.alpha = 0.7;
+				facebookFoto_dist.blendMode = "multiply";
+				facebookFoto_dist.tlX = 550.3;
+				facebookFoto_dist.tlY = 212.7;
+				facebookFoto_dist.trX = 839.55;
+				facebookFoto_dist.trY = 207.65;
+				facebookFoto_dist.blX = 547.3;
+				facebookFoto_dist.blY = 587.6;
+				facebookFoto_dist.brX = 843.6;
+				facebookFoto_dist.brY = 585.6;
 			}else if (video.videoTime >= 37.337 && video.videoTime <= 39.345) 
 			{
 				telaSistema_dist.alpha = 0.7;
 				telaSistema_dist.blendMode = "multiply";
 				telaSistema_dist.tlX=350.75;telaSistema_dist.tlY=84.7;telaSistema_dist.trX=1224.55;telaSistema_dist.trY=77.65;telaSistema_dist.blX=363.85;telaSistema_dist.blY=576.55;telaSistema_dist.brX=1219.55;telaSistema_dist.brY=567.45
-
-				//telaSistema_dist.tlX = 351.75;
-				//telaSistema_dist.tlY = 88.7;
-				//telaSistema_dist.trX = 1223.55;
-				//telaSistema_dist.trY = 82.65;
-				//telaSistema_dist.blX = 365.85;
-				//telaSistema_dist.blY = 572.5;
-				//telaSistema_dist.brX = 1215.5;
-				//telaSistema_dist.brY = 565.45;
 			}else {
+				facebookCapa_dist.alpha = 0;
 				telaSistema_dist.alpha = 0;
 				celmsg_dist.alpha = 0;	
 				baseListaCel_dist.alpha = 0;
+				facebookFoto_dist.alpha = 0;
 			}
 		}
 		

@@ -111,15 +111,22 @@
     console.log(dados_login);
     FB.api('/me', function(response) {
       document['NatalGazinVideo'].setNome(response.name);
-      document['NatalGazinVideo'].setDesejos(['Geladeira','Televisão LED','Fogão']);
+      document['NatalGazinVideo'].setDesejos(['Geladeira','Televisão LED','Fogão','Armário','Cama King size']);
       FB.api(
           "/"+response.id+"/picture?width=100&height=100",
           function (response2) {
             if (response2 && !response2.error) {
               document['NatalGazinVideo'].setAvatar(response2.data.url);
-              document['NatalGazinVideo'].playVideo();
-              console.log(response)
-              console.log(response2)
+                FB.api(
+                    "/"+response.id+"/picture?type=large",
+                    function (response3) {
+                      if (response3 && !response3.error) {
+                        document['NatalGazinVideo'].setFotoPerfil(response3.data.url);
+                        document['NatalGazinVideo'].playVideo();
+                        console.log(response3);
+                      }
+                    }
+                );
             }
           }
       );
