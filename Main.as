@@ -174,7 +174,7 @@ package
 				video.playVideo();	
 				stage.addEventListener(MouseEvent.CLICK, pausar);
 				
-				video.volume = 0;
+				video.volume = 1;
 			}
 		}
 		
