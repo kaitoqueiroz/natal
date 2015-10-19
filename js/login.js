@@ -47,7 +47,7 @@ function fb_login() {
                     	$('.fullscreen-bg').hide();
                     	$('.logo_natal').hide();
                     	$('.logo_gazin').hide();
-                    	$('#video_natal').css('opacity',1);
+                    	$('#video_natal').css('left','0px');
                       if (response3 && !response3.error) {
                         document['NatalGazinVideo'].setFotoPerfil(response3.data.url);
                         document['NatalGazinVideo'].playVideo();

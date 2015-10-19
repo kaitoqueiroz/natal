@@ -418,15 +418,15 @@ package
 			fotoFace.y = 349;
 			
 			
-			var avatarComent = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
-			avatarComent.width = 50;
-			avatarComent.height = 50;
-			avatarComent.smoothing = true;
+			//var avatarComent = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
+			//avatarComent.width = 50;
+			//avatarComent.height = 50;
+			//avatarComent.smoothing = true;
 				
-			comentarios.addChild(avatarComent);
+			//comentarios.addChild(avatarComent);
 
-			avatarComent.x = 0;
-			avatarComent.y = 0;
+			//avatarComent.x = 0;
+			//avatarComent.y = 0;
 
 		}
 		

@@ -417,12 +417,10 @@ input[type="checkbox"]:focus{
 
 
 #video_natal{
-  opacity:0;
   position:absolute;
   top:0px;
   bottom: 0px;
-  left: 0px;
-  right: 0px;
+  left: -9000px;
   width:100vw;
   height:100vh;
 }
