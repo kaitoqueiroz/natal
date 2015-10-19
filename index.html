@@ -36,77 +36,93 @@
       </a>
     </div>
   </section>-->
+  <div id="video_natal" >
+    <object type="application/x-shockwave-flash" id="NatalGazinVideo" name="NatalGazinVideo" data="natal_gazin.swf" flashvars="nome=Adriano Lobo&amp;avatar=https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c17.0.100.100/p100x100/164076_100804753329119_3140856_n.jpg?oh=efd6317e3d8a812ba0f4f571f49edd11&amp;oe=569110B8&amp;__gda__=1451958321_b1b87fe0f9f58cd690d96ef6e328ca8f" width="100%" height="100%">
+    <param name="movie" value="natal_gazin.swf?">
+    <param name="quality" value="high">
+    <param name="bgcolor" value="#ffffff">
+    <param name="play" value="true">
+    <param name="loop" value="true">
+    <param name="wmode" value="window">
+    <param name="scale" value="exactfit">
+    <param name="menu" value="true">
+    <param name="FlashVars" value="one=1&amp;two=2">
+    <param name="devicefont" value="false">
+    <param name="salign" value="">
+    <param name="allowScriptAccess" value="always"> 
+    </object>
+  </div>
   <div class="back">
     <!--<div class="ipad-head">12:00</div>-->
     <div class="toolbar">Lista de Desejos</div>
     <div class="scroll" id="scroll">
       <ul>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox1" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox1" name="checkbox[]" value="Televisão de led" />
             <label for="checkbox1">Televisão de led</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox2" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox2" name="checkbox[]" value="Refrigerador duplex" />
             <label for="checkbox2">Refrigerador duplex</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox3" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox3" name="checkbox[]" value="Ar condicionado" />
             <label for="checkbox3">Ar condicionado</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox4" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox4" name="checkbox[]" value="Lavadora de roupas" />
             <label for="checkbox4">Lavadora de roupas</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox5" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox5" name="checkbox[]" value="Smartphone" />
             <label for="checkbox5">Smartphone</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox6" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox6" name="checkbox[]" value="Tablet" />
             <label for="checkbox6">Tablet</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox7" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox7" name="checkbox[]" value="Notebook" />
             <label for="checkbox7">Notebook</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox8" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox8" name="checkbox[]" value="Video-game" />
             <label for="checkbox8">Video-game</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox9" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox9" name="checkbox[]" value="Cama box" />
             <label for="checkbox9">Cama box</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox10" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox10" name="checkbox[]" value="Guarda-roupas" />
             <label for="checkbox10">Guarda-roupas</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox11" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox11" name="checkbox[]" value="Jogo de sofá" />
             <label for="checkbox11">Jogo de sofá</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox12" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox12" name="checkbox[]" value="Jogo de cozinha" />
             <label for="checkbox12">Jogo de cozinha</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox13" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox13" name="checkbox[]" value="Liquidificador" />
             <label for="checkbox13">Liquidificador</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox14" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox14" name="checkbox[]" value="Batedeira" />
             <label for="checkbox14">Batedeira</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox15" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox15" name="checkbox[]" value="Cafeteira" />
             <label for="checkbox15">Cafeteira</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox16" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox16" name="checkbox[]" value="Secador de cabelos" />
             <label for="checkbox16">Secador de cabelos</label>
           </li>
           <li>
-            <input class="checkbox2" type="checkbox" id="checkbox17" name="checkbox[]"  />
+            <input class="checkbox2" type="checkbox" id="checkbox17" name="checkbox[]" value="Prancha de cabelos" />
             <label for="checkbox17">Prancha de cabelos</label>
           </li>
       </ul>
@@ -143,6 +159,10 @@
         var inputID = $(this).find("label").attr("for");
         $('#' + inputID).click();
     });
+
+    $('.facebook-btn').click(function(){
+      fb_login();
+    })
   });
 </script>
 </body>

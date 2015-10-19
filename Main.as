@@ -103,8 +103,11 @@ package
 			texto_inicial.x = 29;
 			texto_inicial.y = 100;	
 			
+			var desejos_txt = '';
+			
 			for (var i:int = 0; i < desejos.length; i++) 
 			{
+				desejos_txt += desejos[i]+', ';
 				
 				var produto = new TextField();
 				produto.width = 171;
@@ -145,6 +148,17 @@ package
 				
 				
 			}
+			
+				var desejosSistema = new TextField();
+				desejosSistema.width = 861;
+				desejosSistema.height = 39;
+				desejosSistema.text = desejos_txt;
+				nomeFormat = new TextFormat('Arial', 20, 0x000000);
+				nomeFormat.align = 'left';
+				desejosSistema.setTextFormat(nomeFormat);
+				telaSistema.addChild(desejosSistema);
+				desejosSistema.x = 81;
+				desejosSistema.y = 630;
 		}
 		
 		
