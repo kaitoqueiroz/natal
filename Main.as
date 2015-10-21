@@ -246,24 +246,24 @@ package
 			nomeFaceCapa.width = 514;
 			nomeFaceCapa.height = 38;
 			nomeFaceCapa.text = value;
-			nomeFormat = new TextFormat('Arial', 24, 0xffffff);
+			nomeFormat = new TextFormat('Arial', 26, 0x000000);
 			nomeFormat.align = 'left';
 			nomeFaceCapa.setTextFormat(nomeFormat);
 			facebookCapa.addChild(nomeFaceCapa);
-			nomeFaceCapa.x = 200;
-			nomeFaceCapa.y = 370;
+			nomeFaceCapa.x = 240;
+			nomeFaceCapa.y = 461;
 			
 			
-			var nomeFacePesquisa = new TextField();
-			nomeFacePesquisa.width = 315;
-			nomeFacePesquisa.height = 25;
-			nomeFacePesquisa.text = value;
-			var nomeFaceFormat = new TextFormat('Arial', 20, 0xffffff);
-			nomeFaceFormat.align = 'left';
-			nomeFacePesquisa.setTextFormat(nomeFaceFormat);
-			facebookCapa.addChild(nomeFacePesquisa);
-			nomeFacePesquisa.x = 242;
-			nomeFacePesquisa.y = 30;
+			//var nomeFacePesquisa = new TextField();
+			//nomeFacePesquisa.width = 315;
+			//nomeFacePesquisa.height = 25;
+			//nomeFacePesquisa.text = value;
+			//var nomeFaceFormat = new TextFormat('Arial', 20, 0xffffff);
+			//nomeFaceFormat.align = 'left';
+			//nomeFacePesquisa.setTextFormat(nomeFaceFormat);
+			//facebookCapa.addChild(nomeFacePesquisa);
+			//nomeFacePesquisa.x = 242;
+			//nomeFacePesquisa.y = 30;
 			
 			var nomeFaceFotoPesquisa = new TextField();
 			nomeFaceFotoPesquisa.width = 315;
@@ -408,14 +408,14 @@ package
 			//circleListaCel.y = avatarListaCel.y + 20;
 			
 			var fotoFace = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
-			fotoFace.width = 130;
-			fotoFace.height = 130;
+			fotoFace.width = 180;
+			fotoFace.height = 180;
 			fotoFace.smoothing = true;
 				
 			facebookCapa.addChild(fotoFace);
 
-			fotoFace.x = 57;
-			fotoFace.y = 349;
+			fotoFace.x = 33;
+			fotoFace.y = 369;
 			
 			
 			//var avatarComent = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
@@ -442,7 +442,7 @@ package
 				celmsg_dist.blY = 522.1;
 				celmsg_dist.brX = 871.8;
 				celmsg_dist.brY = 575.5;
-			}else if (video.videoTime >= 12.345 && video.videoTime <= 15.965) 
+			}else if (video.videoTime >= 12.346 && video.videoTime <= 15.965) 
 			{
 				baseListaCel_dist.alpha = 0.8;
 				baseListaCel_dist.blendMode = "multiply";
@@ -452,7 +452,7 @@ package
 				facebookCapa_dist.alpha = 0.8;
 				facebookCapa_dist.blendMode = "multiply";
 				facebookCapa_dist.tlX=710.65;facebookCapa_dist.tlY=14.25;facebookCapa_dist.trX=1167.15;facebookCapa_dist.trY=81.35;facebookCapa_dist.blX=623.2;facebookCapa_dist.blY=612.05;facebookCapa_dist.brX=1057.35;facebookCapa_dist.brY=705.6
-			}else if (video.videoTime >= 30.954 && video.videoTime <= 33.704) 
+			}else if (video.videoTime >= 30.954 && video.videoTime <= 33.76) 
 			{
 				facebookFoto_dist.alpha = 0.7;
 				facebookFoto_dist.blendMode = "multiply";
