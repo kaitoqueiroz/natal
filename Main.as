@@ -265,29 +265,29 @@ package
 			//nomeFacePesquisa.x = 242;
 			//nomeFacePesquisa.y = 30;
 			
-			var nomeFaceFotoPesquisa = new TextField();
-			nomeFaceFotoPesquisa.width = 315;
-			nomeFaceFotoPesquisa.height = 25;
-			nomeFaceFotoPesquisa.text = value;
-			var nomeFaceFotoFormat = new TextFormat('Arial', 20, 0xffffff);
-			nomeFaceFotoFormat.align = 'left';
-			nomeFaceFotoPesquisa.setTextFormat(nomeFaceFotoFormat);
-			facebookFoto.addChild(nomeFaceFotoPesquisa);
-			nomeFaceFotoPesquisa.x = 242;
-			nomeFaceFotoPesquisa.y = 30;
+			//var nomeFaceFotoPesquisa = new TextField();
+			//nomeFaceFotoPesquisa.width = 315;
+			//nomeFaceFotoPesquisa.height = 25;
+			//nomeFaceFotoPesquisa.text = value;
+			//var nomeFaceFotoFormat = new TextFormat('Arial', 20, 0xffffff);
+			//nomeFaceFotoFormat.align = 'left';
+			//nomeFaceFotoPesquisa.setTextFormat(nomeFaceFotoFormat);
+			//facebookFoto.addChild(nomeFaceFotoPesquisa);
+			//nomeFaceFotoPesquisa.x = 242;
+			//nomeFaceFotoPesquisa.y = 30;
 			
-			var breadcumbFotosPerfil_txt = 'Retornar ao álbum · Fotos de ' + value+'· Linha do Tempo de ' + value;
+			//var breadcumbFotosPerfil_txt = 'Retornar ao álbum · Fotos de ' + value+'· Linha do Tempo de ' + value;
 			
-			var breadcumbFotosPerfil = new TextField();
-			breadcumbFotosPerfil.width = 694;
-			breadcumbFotosPerfil.height = 17;
-			breadcumbFotosPerfil.text = breadcumbFotosPerfil_txt;
-			var breadcumbFotosPerfilFormat = new TextFormat('Arial', 18, 0x3b5998);
-			breadcumbFotosPerfilFormat.align = 'left';
-			breadcumbFotosPerfil.setTextFormat(breadcumbFotosPerfilFormat);
-			facebookFoto.addChild(breadcumbFotosPerfil);
-			breadcumbFotosPerfil.x = 64;
-			breadcumbFotosPerfil.y = 104;
+			//var breadcumbFotosPerfil = new TextField();
+			//breadcumbFotosPerfil.width = 694;
+			//breadcumbFotosPerfil.height = 17;
+			//breadcumbFotosPerfil.text = breadcumbFotosPerfil_txt;
+			//var breadcumbFotosPerfilFormat = new TextFormat('Arial', 18, 0x3b5998);
+			//breadcumbFotosPerfilFormat.align = 'left';
+			//breadcumbFotosPerfil.setTextFormat(breadcumbFotosPerfilFormat);
+			//facebookFoto.addChild(breadcumbFotosPerfil);
+			//breadcumbFotosPerfil.x = 64;
+			//breadcumbFotosPerfil.y = 104;
 			
 			//var nomeListaCel = new TextField();
 			//nomeListaCel.width = 191;
