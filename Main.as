@@ -17,6 +17,9 @@ package
 	import flash.system.Security;
 	import flash.events.MouseEvent;
 	import flash.external.ExternalInterface;
+    import flash.net.navigateToURL;
+    import flash.net.URLRequest;
+    import flash.net.URLVariables;
 	
 	/**
 	 * ...
@@ -25,6 +28,7 @@ package
 	public class Main extends MovieClip 
 	{
 		public var video:VideoLoader;
+		public var carregando_mc:MovieClip;
 		public var comentarios:MovieClip;
 		public var celmsg_mc:MovieClip;
 		public var telaSistema:MovieClip;
@@ -53,6 +57,7 @@ package
 		public var isTelaSistema_onStage:Boolean = false;
 		public var isFacebookCapa_onStage:Boolean = false;
 		public var isFacebookFoto_onStage:Boolean = false;
+		public var isBufferFull:Boolean = false;
 
 		
 		var avatar:Bitmap;
@@ -130,6 +135,15 @@ package
 			rel_tf.y = 647;
 		}
 		
+		public function videoCompleto(e) {
+			navigateToURL( new URLRequest( '/compartilhar' ),'_self' );
+		}
+		
+		public function videoBufferFull(e){
+			isBufferFull = true;
+			stage.removeChild(carregando_mc);
+		}
+		
 		function init(e:Event = null) {
 			
 			
@@ -142,6 +156,9 @@ package
 				"container":stage,
 				"volume":1
 			});
+			
+			video.addEventListener("videoComplete",videoCompleto),
+			video.addEventListener("videoBufferFull",videoBufferFull),
 
 		
 			video.load();
@@ -151,6 +168,10 @@ package
 			facebookCapa = new FacebookCapa();
 			facebookFoto = new FacebookFoto();
 			
+			carregando_mc =  new Carregando();
+			stage.addChild(carregando_mc);
+			carregando_mc.y = stage.height / 2;
+			carregando_mc.x = 0;
 			//setEmail('loremipsom@gmail.com');
 			
 		}
@@ -218,7 +239,7 @@ package
 		
 		public function checkReady(e) {
 			var proporcao = 0;
-			if (isAvatarReady && isFotoPerfilReady && isFotoCapaReady) {
+			if (isAvatarReady && isFotoPerfilReady && isFotoCapaReady && isBufferFull) {
 				
 				if(temCapa){
 					proporcao = fotoCapa.height / fotoCapa.width;
