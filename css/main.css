@@ -224,7 +224,6 @@ body {
   z-index: 100;
 }
 .container {
-  background-image: url("../img/ipad_image.png");
   margin:20% auto;
   height:38px;
   width:207px;
@@ -290,30 +289,97 @@ body {
   }
 }
 
-.back {    
-    font-family:helvetica neue,helvetica,arial,sans-serif;
-    top: 50%;
-    left: 50%;
-    display: block;
-    position: absolute;
-    background: url('../img/ipad_image.png') no-repeat;
-    background-size: 300px 417px;
-    width: 300px;
-    height: 417px;
-    margin-top: -208.5px; /* HALF OF THE HEIGHT */
-    margin-left: -153px; /* HALF OF THE WIDTH */
-    padding: 41px 16px;
-    z-index: 9999999999;
+.top {    
+  background: rgba(0, 0, 0, 0) url("../img/msg-top.png") no-repeat scroll 0 0 / 1000px 370px;
+  display: block;
+  height: 370px;
+  left: 50%;
+  margin-left: -551px;
+  padding: 41px 16px;
+  position: absolute;
+  top: 0;
+  width: 1000px;
+  z-index: 1;
 }
-.ipad-head{
-  background-color: black;
-  border-radius: 4px 4px 0 0;
+.middle {    
+  background: rgba(0, 0, 0, 0) url("../img/msg-middle.png") no-repeat scroll 0 0 / 637px 246px;
+  display: block;
+  height: 246px;
+  left: 50%;
+  margin-left: -381px;
+  padding: 41px 16px;
+  position: absolute;
+  top: 296px;
+  width: 637px;
+  z-index: 1;
+}
+.desejos {    
+  background: rgba(0, 0, 0, 0) url("../img/desejos.png") no-repeat scroll 0 0 / 940px 195px;
+  display: block;
+  font-family: helvetica neue,helvetica,arial,sans-serif;
+  height: 195px;
+  left: 50%;
+  margin-left: -474px;
+  margin-top: 170px;
+  padding: 41px 16px;
+  position: absolute;
+  top: 286px;
+  width: 940px;
+  z-index: 1;
+}
+.input-email{
   color: white;
-  font-size: 10px;
-  padding: 2px;
+  font-family: tahoma;
+  font-size: 20px;
+  font-style: italic;
+  margin-left: 234px;
+}  
+.input-email input{
+  border: medium none;
+  border-radius: 5px;
+  height: 30px;
+  margin-right: 10px;
+  padding: 0 30px;
   text-align: center;
-  width: 263px;
+  width: 300px;
+}  
+.botao-login {
+  background: rgba(0, 0, 0, 0) url("../img/button.png") no-repeat scroll 0 0 / 140px 50px;
+  cursor: pointer;
+  display: block;
+  font-family: helvetica neue,helvetica,arial,sans-serif;
+  height: 50px;
+  left: 50%;
+  margin-left: -106px;
+  margin-top: 170px;
+  position: absolute;
+  top: 495px;
+  width: 140px;
+  z-index: 1;
 }
+.lista-desejos{
+  margin-top: 45px;
+  text-align: center;
+  width: 755px;
+  z-index: 2;
+}
+.item-lista-desejos{
+  background-color: white;
+  border: 1px solid rgba(0, 33, 255, 0.51);
+  border-radius: 5px;
+  color: #0086ff;
+  display: inline-table;
+  font-size: 14px;
+  margin-bottom: 4px;
+  padding: 1px 7px;
+  z-index: 3;
+  cursor: pointer;
+}
+.item-lista-desejos:hover, .item-lista-desejos:active,.item-lista-desejos.desejo-selecionado{
+  background-color: #2c91b4;
+  color: white;
+}
+
 .facebook-btn{
   margin-left: 0;
   margin-top: 0;
@@ -412,7 +478,7 @@ input[type=checkbox].checkbox2:checked + label:before {
 }
 
 input[type="checkbox"]:focus{
-    outline: none;
+  outline: none;
 }
 
 
@@ -423,4 +489,5 @@ input[type="checkbox"]:focus{
   left: -9000px;
   width:100vw;
   height:100vh;
+  z-index: 20;
 }

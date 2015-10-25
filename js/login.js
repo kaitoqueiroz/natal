@@ -40,9 +40,9 @@ function fb_login() {
 					document['NatalGazinVideo'].setRelacionamento(traduziro);
 				};
 				var desejos = [];
-				$('[name="checkbox[]"]:checked').each(function() {
-					desejos.push($(this).val());
-				});
+				$('.desejo-selecionado').each(function() {
+                    desejos.push($(this).html());
+                });
       //document['NatalGazinVideo'].setDesejos(['Geladeira','Televisão LED','Fogão','Armário','Cama King size']);
       document['NatalGazinVideo'].setDesejos(desejos);
 
