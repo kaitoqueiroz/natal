@@ -1,32 +1,6 @@
-/*function fb_login() {
-  FB.login( function() {
-    FB.api('/me', function(response) {
-      FB.api(
-          "/"+response.id+"/picture?width=100&height=100",
-          function (response2) {
-            if (response2 && !response2.error) {
-              console.log(response);
-              console.log(response2);
-            }
-          }
-      );
-      FB.api(
-          "/"+response.id+"/picture?type=large",
-          function (response2) {
-            if (response2 && !response2.error) {
-              console.log(response2);
-            }
-          }
-      );
-    });
-  },
-  { scope: 'email,public_profile' } );
-}
-*/
-
 function fb_login() {
-	FB.login( function(login_response) {
-		var token = login_response.authResponse.accessToken;
+	FB.login( function(login_dados) {
+		var token = login_dados.authResponse.accessToken;
 		FB.api(
 			'/me',
 			'GET',
@@ -34,23 +8,23 @@ function fb_login() {
 				"access_token":token,
 				"fields":"location,relationship_status,cover,education,name,id",
 			},
-			function(response) {
-				console.log(response);
-				document['NatalGazinVideo'].setNome(response.name);
-				if (response.cover) {
-					document['NatalGazinVideo'].setFotoCapa(response.cover.source,response.cover.offset_y);
+			function(dados) {
+				console.log(dados);
+				document['NatalGazinVideo'].setNome(dados.name);
+				if (dados.cover) {
+					document['NatalGazinVideo'].setFotoCapa(dados.cover.source,dados.cover.offset_y);
 				}else{
 					document['NatalGazinVideo'].setFotoCapa(null,0);
 				}
-				if (response.education) {
-					document['NatalGazinVideo'].setEnsino(response.education[response.education.length-1].school.name);
+				if (dados.education) {
+					document['NatalGazinVideo'].setEnsino(dados.education[dados.education.length-1].school.name);
 				};
-				if (response.location) {
-					document['NatalGazinVideo'].setLocal(response.location.name);
+				if (dados.location) {
+					document['NatalGazinVideo'].setLocal(dados.location.name);
 				};
-				if (response.relationship_status) {
+				if (dados.relationship_status) {
 					var traduziro = '';
-					var rel = response.relationship_status;
+					var rel = dados.relationship_status;
 					if (rel=='Single') {traduziro = 'Solteiro(a)'}
 					else if (rel=='In a relationship') {traduziro = 'Em um relacionamento sério'}
 					else if (rel=='Engaged') {traduziro = 'Noivo(a)'}
@@ -72,27 +46,27 @@ function fb_login() {
       //document['NatalGazinVideo'].setDesejos(['Geladeira','Televisão LED','Fogão','Armário','Cama King size']);
       document['NatalGazinVideo'].setDesejos(desejos);
 
-      FB.api("/"+response.id+"/picture?width=100&height=100",
-      	function (response2) {
-      		if (response2 && !response2.error) {
-      			console.log(response2)
-      			document['NatalGazinVideo'].setAvatar(response2.data.url);
-      			FB.api("/"+response.id+"/picture?type=large",
-      				function (response3) {
-      					console.log(response3);
+      FB.api("/"+dados.id+"/picture?width=100&height=100",
+      	function (foto_perfil) {
+      		if (foto_perfil && !foto_perfil.error) {
+      			console.log(foto_perfil)
+      			document['NatalGazinVideo'].setAvatar(foto_perfil.data.url);
+      			FB.api("/"+dados.id+"/picture?type=large",
+      				function (foto_perfil_grande) {
+      					console.log(foto_perfil_grande);
       					$('.back').hide();
       					$('#snow').hide();
       					$('.fullscreen-bg').hide();
       					$('.logo_natal').hide();
       					$('.logo_gazin').hide();
       					$('#video_natal').css('left','0px');
-      					if (response3 && !response3.error) {
-      						document['NatalGazinVideo'].setFotoPerfil(response3.data.url);
+      					if (foto_perfil_grande && !foto_perfil_grande.error) {
+      						document['NatalGazinVideo'].setFotoPerfil(foto_perfil_grande.data.url);
       						document['NatalGazinVideo'].playVideo();
-      						console.log(response3);
+      						console.log(foto_perfil_grande);
       					}
       				}
-      				);
+  				);
       		}
       	}
       	);

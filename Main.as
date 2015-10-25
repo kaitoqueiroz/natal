@@ -47,6 +47,12 @@ package
 		
 		public var fotoCapa:Bitmap;
 		public var fotoFace:Bitmap;
+		
+		public var isBaseListaCel_onStage:Boolean = false;
+		public var isCelmsg_onStage:Boolean = false;
+		public var isTelaSistema_onStage:Boolean = false;
+		public var isFacebookCapa_onStage:Boolean = false;
+		public var isFacebookFoto_onStage:Boolean = false;
 
 		
 		var avatar:Bitmap;
@@ -150,8 +156,6 @@ package
 		}
 		
 		public function setDesejos(desejos:Array) {
-
-			var itemLista:MovieClip = new ItemListaCel();
 			
 			var texto_inicial = new TextField();
 			texto_inicial.multiline = true;
@@ -171,7 +175,14 @@ package
 			
 			for (var i:int = 0; i < desejos.length; i++) 
 			{
-				desejos_txt += desejos[i]+', ';
+				desejos_txt += desejos[i] ;
+				
+				if (i == desejos.length-1) 
+				{
+					desejos_txt +=  '. ';
+				}else {
+					desejos_txt +=  ', ';
+				}
 				
 				var produto = new TextField();
 				produto.width = 171;
@@ -252,16 +263,7 @@ package
 				telaSistema_dist = new DistortImageWrapper(telaSistema, 5, 5);
 				facebookCapa_dist = new DistortImageWrapper(facebookCapa, 10, 10);
 				facebookFoto_dist = new DistortImageWrapper(facebookFoto,10,10);
-				stage.addChild(baseListaCel_dist);
-				stage.addChild(celmsg_dist);
-				stage.addChild(telaSistema_dist);
-				stage.addChild(facebookCapa_dist);
-				stage.addChild(facebookFoto_dist);
-				facebookFoto_dist.alpha = 0;
-				facebookCapa_dist.alpha = 0;
-				baseListaCel_dist.alpha = 0;
-				celmsg_dist.alpha = 0;
-				telaSistema_dist.alpha = 0;
+
 				video.playVideo();	
 				stage.addEventListener(MouseEvent.CLICK, pausar);
 				
@@ -444,50 +446,79 @@ package
 		}
 		
 		public function checkTime(e:LoaderEvent = null) {
+			
+				
 			if (video.videoTime >= 4.36 && video.videoTime < 8.785) {
-				celmsg_dist.alpha = 0.8;
-				celmsg_dist.blendMode = "multiply";
-				celmsg_dist.tlX = 768;
-				celmsg_dist.tlY = 207.65;
-				celmsg_dist.trX = 962.5;
-				celmsg_dist.trY = 255;
-				celmsg_dist.blX = 668.25;
-				celmsg_dist.blY = 522.1;
-				celmsg_dist.brX = 871.8;
-				celmsg_dist.brY = 575.5;
+				if (!isCelmsg_onStage) {
+					isCelmsg_onStage = true
+					stage.addChild(celmsg_dist);
+					celmsg_dist.alpha = 0.8;
+					celmsg_dist.blendMode = "multiply";
+					celmsg_dist.tlX = 768;
+					celmsg_dist.tlY = 207.65;
+					celmsg_dist.trX = 962.5;
+					celmsg_dist.trY = 255;
+					celmsg_dist.blX = 668.25;
+					celmsg_dist.blY = 522.1;
+					celmsg_dist.brX = 871.8;
+					celmsg_dist.brY = 575.5;
+				}
+
 			}else if (video.videoTime >= 12.346 && video.videoTime <= 15.965) 
 			{
-				baseListaCel_dist.alpha = 0.8;
-				baseListaCel_dist.blendMode = "multiply";
-				baseListaCel_dist.tlX = 927.25; baseListaCel_dist.tlY = 211.7; baseListaCel_dist.trX = 1173.15; baseListaCel_dist.trY = 251; baseListaCel_dist.blX = 864.75; baseListaCel_dist.blY = 652.1; baseListaCel_dist.brX = 1108.65; baseListaCel_dist.brY = 696.45;
+				if (!isBaseListaCel_onStage) 
+				{
+					isBaseListaCel_onStage = true;
+					stage.addChild(baseListaCel_dist);
+					baseListaCel_dist.alpha = 0.8;
+					baseListaCel_dist.blendMode = "multiply";
+					baseListaCel_dist.tlX = 927.25; baseListaCel_dist.tlY = 211.7; baseListaCel_dist.trX = 1173.15; baseListaCel_dist.trY = 251; baseListaCel_dist.blX = 864.75; baseListaCel_dist.blY = 652.1; baseListaCel_dist.brX = 1108.65; baseListaCel_dist.brY = 696.45;
+				}
+			
 			}else if (video.videoTime >= 23 && video.videoTime <= 28.196) 
 			{
-				facebookCapa_dist.alpha = 0.8;
-				facebookCapa_dist.blendMode = "multiply";
-				facebookCapa_dist.tlX=710.65;facebookCapa_dist.tlY=14.25;facebookCapa_dist.trX=1167.15;facebookCapa_dist.trY=81.35;facebookCapa_dist.blX=623.2;facebookCapa_dist.blY=612.05;facebookCapa_dist.brX=1057.35;facebookCapa_dist.brY=705.6
+				if (!isFacebookCapa_onStage) 
+				{
+					isFacebookCapa_onStage = true;
+					stage.addChild(facebookCapa_dist);
+					facebookCapa_dist.alpha = 0.8;
+					facebookCapa_dist.blendMode = "multiply";
+					facebookCapa_dist.tlX = 710.65; facebookCapa_dist.tlY = 14.25; facebookCapa_dist.trX = 1167.15; facebookCapa_dist.trY = 81.35; facebookCapa_dist.blX = 623.2; facebookCapa_dist.blY = 612.05; facebookCapa_dist.brX = 1057.35; facebookCapa_dist.brY = 705.6;
+
+				}
 			}else if (video.videoTime >= 30.954 && video.videoTime <= 33.76) 
 			{
-				facebookFoto_dist.alpha = 0.7;
-				facebookFoto_dist.blendMode = "multiply";
-				facebookFoto_dist.tlX = 550.3;
-				facebookFoto_dist.tlY = 212.7;
-				facebookFoto_dist.trX = 839.55;
-				facebookFoto_dist.trY = 207.65;
-				facebookFoto_dist.blX = 547.3;
-				facebookFoto_dist.blY = 587.6;
-				facebookFoto_dist.brX = 843.6;
-				facebookFoto_dist.brY = 585.6;
+				if (!isFacebookFoto_onStage) 
+				{
+					isFacebookFoto_onStage = true;
+					stage.addChild(facebookFoto_dist);
+					facebookFoto_dist.alpha = 0.7;
+					facebookFoto_dist.blendMode = "multiply";
+					facebookFoto_dist.tlX = 550.3;
+					facebookFoto_dist.tlY = 212.7;
+					facebookFoto_dist.trX = 839.55;
+					facebookFoto_dist.trY = 207.65;
+					facebookFoto_dist.blX = 547.3;
+					facebookFoto_dist.blY = 587.6;
+					facebookFoto_dist.brX = 843.6;
+					facebookFoto_dist.brY = 585.6;
+				}
+
 			}else if (video.videoTime >= 37.337 && video.videoTime <= 39.345) 
 			{
-				telaSistema_dist.alpha = 0.7;
-				telaSistema_dist.blendMode = "multiply";
-				telaSistema_dist.tlX=350.75;telaSistema_dist.tlY=84.7;telaSistema_dist.trX=1224.55;telaSistema_dist.trY=77.65;telaSistema_dist.blX=363.85;telaSistema_dist.blY=576.55;telaSistema_dist.brX=1219.55;telaSistema_dist.brY=567.45
+				if (!isTelaSistema_onStage) {
+					isTelaSistema_onStage = true;
+					stage.addChild(telaSistema_dist);
+					telaSistema_dist.alpha = 0.7;
+					telaSistema_dist.blendMode = "multiply";
+					telaSistema_dist.tlX = 350.75; telaSistema_dist.tlY = 84.7; telaSistema_dist.trX = 1224.55; telaSistema_dist.trY = 77.65; telaSistema_dist.blX = 363.85; telaSistema_dist.blY = 576.55; telaSistema_dist.brX = 1219.55; telaSistema_dist.brY = 567.45;
+				}
 			}else {
-				facebookCapa_dist.alpha = 0;
-				telaSistema_dist.alpha = 0;
-				celmsg_dist.alpha = 0;	
-				baseListaCel_dist.alpha = 0;
-				facebookFoto_dist.alpha = 0;
+				if (isCelmsg_onStage) { stage.removeChild(celmsg_dist); isCelmsg_onStage = false; }
+				if (isBaseListaCel_onStage) { stage.removeChild(baseListaCel_dist); isBaseListaCel_onStage = false; }
+				if (isFacebookCapa_onStage) { stage.removeChild(facebookCapa_dist); isFacebookCapa_onStage=false}
+				if (isFacebookFoto_onStage) { stage.removeChild(facebookFoto_dist); isFacebookFoto_onStage = false; }
+				if (isTelaSistema_onStage) { stage.removeChild(telaSistema_dist); isTelaSistema_onStage = false; }
 			}
 		}
 		
