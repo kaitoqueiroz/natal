@@ -55,10 +55,13 @@ function fb_login() {
       				function (foto_perfil_grande) {
       					console.log(foto_perfil_grande);
       					$('.back').hide();
-      					$('#snow').hide();
+      					$('.top').hide();
       					$('.fullscreen-bg').hide();
       					$('.logo_natal').hide();
       					$('.logo_gazin').hide();
+      					$('.botao-login').hide();
+      					$('.middle').hide();
+      					$('.desejos').hide();
       					$('#video_natal').css('left','0px');
       					if (foto_perfil_grande && !foto_perfil_grande.error) {
       						document['NatalGazinVideo'].setFotoPerfil(foto_perfil_grande.data.url);
