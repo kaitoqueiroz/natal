@@ -40,7 +40,13 @@ package
 		public var nomeSistema:TextField;
 		public var isAvatarReady:Boolean = false;
 		public var isFotoPerfilReady:Boolean = false;
+		public var isFotoCapaReady:Boolean = false;
+		public var offset:Number = 0;
 		public var desejos:Array = [];
+		public var temCapa = true;
+		
+		public var fotoCapa:Bitmap;
+		public var fotoFace:Bitmap;
 
 		
 		var avatar:Bitmap;
@@ -57,7 +63,65 @@ package
 			ExternalInterface.addCallback("playVideo", playVideo);
 			ExternalInterface.addCallback("setDesejos", setDesejos);
 			ExternalInterface.addCallback("setFotoPerfil",setFotoPerfil);
+			ExternalInterface.addCallback("setFotoCapa",setFotoCapa);
+			ExternalInterface.addCallback("setLocal",setLocal);
+			ExternalInterface.addCallback("setEnsino",setEnsino);
+			ExternalInterface.addCallback("setRelacionamento",setRelacionamento);
 
+		}
+		
+		
+		public function setLocal(local){
+			ExternalInterface.call("console.log", local);
+			var local_tf = new TextField();
+			local_tf.width = 642;
+			local_tf.height = 24;
+			local_tf.text = local;
+			var format_local:TextFormat = new TextFormat('Arial', 18, 0x556fa6);
+			format_local.align = 'left';
+			local_tf.setTextFormat(format_local);
+			facebookCapa.addChild(local_tf);
+			local_tf.x = 117;
+			local_tf.y = 563;
+			
+			var localSist_tf = new TextField();
+			localSist_tf.width = 217;
+			localSist_tf.height = 24;
+			localSist_tf.text = local;
+			var localSistFormat = new TextFormat('Arial', 20, 0x000000);
+			localSistFormat.align = 'left';
+			localSist_tf.setTextFormat(localSistFormat);
+			telaSistema.addChild(localSist_tf);
+			localSist_tf.x = 717;
+			localSist_tf.y = 547;
+		}
+		
+		public function setEnsino(inst){
+			ExternalInterface.call("console.log", inst);
+			var inst_tf = new TextField();
+			inst_tf.width = 455;
+			inst_tf.height = 24;
+			inst_tf.text = inst;
+			var format_inst:TextFormat = new TextFormat('Arial', 18, 0x556fa6);
+			format_inst.align = 'left';
+			inst_tf.setTextFormat(format_inst);
+			facebookCapa.addChild(inst_tf);
+			inst_tf.x = 303;
+			inst_tf.y = 606;
+		}
+		
+		public function setRelacionamento(status){
+			ExternalInterface.call("console.log", status);
+			var rel_tf = new TextField();
+			rel_tf.width = 488;
+			rel_tf.height = 24;
+			rel_tf.text = status;
+			var format_rel:TextFormat = new TextFormat('Arial', 18, 0x556fa6);
+			format_rel.align = 'left';
+			rel_tf.setTextFormat(format_rel);
+			facebookCapa.addChild(rel_tf);
+			rel_tf.x = 32;
+			rel_tf.y = 647;
 		}
 		
 		function init(e:Event = null) {
@@ -119,32 +183,7 @@ package
 				baseListaCel.addChild(produto);
 				produto.x = 28;
 				produto.y = 173+(i*18);
-				
-				//var produto = new TextField();
-				//produto.width = 196;
-				//produto.height = 20;
-				//produto.text = desejos[i];
-				//var nomeFormat = new TextFormat('Arial', 14, 0x000000);
-				//nomeFormat.align = 'left';
-				//produto.setTextFormat(nomeFormat);
-				//itemLista.addChild(produto);
-				//produto.x = 63;
-				//produto.y = 12;
-				
-				//var numero = new TextField();
-				//numero.width = 28;
-				//numero.height = 25;
-				//numero.text = i+1;
-				//nomeFormat = new TextFormat('Arial', 18, 0x000000);
-				//nomeFormat.align = 'center';
-				//numero.setTextFormat(nomeFormat);
-				//itemLista.addChild(numero);
-				//numero.x = 19;
-				//numero.y = 13;
-				
-				//baseListaCel.addChild(itemLista);
-				//itemLista.x = 0;
-				//itemLista.y = (i * 53) + 94;
+	
 				
 				
 			}
@@ -167,7 +206,45 @@ package
 		}
 		
 		public function checkReady(e) {
-			if (isAvatarReady && isFotoPerfilReady) {
+			var proporcao = 0;
+			if (isAvatarReady && isFotoPerfilReady && isFotoCapaReady) {
+				
+				if(temCapa){
+					proporcao = fotoCapa.height / fotoCapa.width;
+					fotoCapa.width = 768;
+					fotoCapa.height = fotoCapa.width * proporcao;
+						
+					fotoCapa.smoothing = true;
+					facebookCapa.addChild(fotoCapa);
+					fotoCapa.y = 88-offset;
+					fotoCapa.x = 0;
+					
+					var baseCapa:Sprite = new Sprite();
+					baseCapa.graphics.lineStyle(1, 0x000000); 
+					baseCapa.graphics.beginFill(0x0000ff); 
+					baseCapa.graphics.drawRect(0, 88, 768, 367); 
+					baseCapa.graphics.endFill(); 
+					facebookCapa.addChild(baseCapa);
+					fotoCapa.cacheAsBitmap = true;
+					baseCapa.cacheAsBitmap = true;
+					fotoCapa.mask = baseCapa;
+				}
+				
+				var fundoFoto:MovieClip = new FundoFotoFace();
+				
+				facebookCapa.addChild(fundoFoto);
+				fundoFoto.x = 29;
+				fundoFoto.y = 365;
+				
+				fotoFace.width = 180;
+				fotoFace.height = 180;
+				fotoFace.smoothing = true;
+					
+				facebookCapa.addChild(fotoFace);
+
+				fotoFace.x = 33;
+				fotoFace.y = 369;
+			
 				removeEventListener(Event.ENTER_FRAME, checkReady);
 				video.addEventListener("playProgress", checkTime);
 				baseListaCel_dist = new DistortImageWrapper(baseListaCel,5,5);
@@ -253,53 +330,6 @@ package
 			nomeFaceCapa.x = 240;
 			nomeFaceCapa.y = 461;
 			
-			
-			//var nomeFacePesquisa = new TextField();
-			//nomeFacePesquisa.width = 315;
-			//nomeFacePesquisa.height = 25;
-			//nomeFacePesquisa.text = value;
-			//var nomeFaceFormat = new TextFormat('Arial', 20, 0xffffff);
-			//nomeFaceFormat.align = 'left';
-			//nomeFacePesquisa.setTextFormat(nomeFaceFormat);
-			//facebookCapa.addChild(nomeFacePesquisa);
-			//nomeFacePesquisa.x = 242;
-			//nomeFacePesquisa.y = 30;
-			
-			//var nomeFaceFotoPesquisa = new TextField();
-			//nomeFaceFotoPesquisa.width = 315;
-			//nomeFaceFotoPesquisa.height = 25;
-			//nomeFaceFotoPesquisa.text = value;
-			//var nomeFaceFotoFormat = new TextFormat('Arial', 20, 0xffffff);
-			//nomeFaceFotoFormat.align = 'left';
-			//nomeFaceFotoPesquisa.setTextFormat(nomeFaceFotoFormat);
-			//facebookFoto.addChild(nomeFaceFotoPesquisa);
-			//nomeFaceFotoPesquisa.x = 242;
-			//nomeFaceFotoPesquisa.y = 30;
-			
-			//var breadcumbFotosPerfil_txt = 'Retornar ao álbum · Fotos de ' + value+'· Linha do Tempo de ' + value;
-			
-			//var breadcumbFotosPerfil = new TextField();
-			//breadcumbFotosPerfil.width = 694;
-			//breadcumbFotosPerfil.height = 17;
-			//breadcumbFotosPerfil.text = breadcumbFotosPerfil_txt;
-			//var breadcumbFotosPerfilFormat = new TextFormat('Arial', 18, 0x3b5998);
-			//breadcumbFotosPerfilFormat.align = 'left';
-			//breadcumbFotosPerfil.setTextFormat(breadcumbFotosPerfilFormat);
-			//facebookFoto.addChild(breadcumbFotosPerfil);
-			//breadcumbFotosPerfil.x = 64;
-			//breadcumbFotosPerfil.y = 104;
-			
-			//var nomeListaCel = new TextField();
-			//nomeListaCel.width = 191;
-			//nomeListaCel.height = 20;
-			//nomeListaCel.text = value;
-			//nomeFormat = new TextFormat('Arial', 16, 0xffffff);
-			//nomeFormat.align = 'left';
-			//nomeListaCel.setTextFormat(nomeFormat);
-			//baseListaCel.addChild(nomeListaCel);
-			//nomeListaCel.x = 63;
-			//nomeListaCel.y = 50;
-			
 			var nome_titulo = new TextField();
 			nome_titulo.width = 127;
 			nome_titulo.height = 22;
@@ -319,6 +349,20 @@ package
 		public function setFotoPerfil(url) {
 			var loader:Loader = new Loader();
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onCompleteFotoPerfil);
+			var context: LoaderContext = new LoaderContext();
+			context.checkPolicyFile = true;
+			loader.load(new URLRequest(url), context);
+			return true
+		}		
+		public function setFotoCapa(url, ofst) {
+			if (url == null) {
+				isFotoCapaReady = true;
+				temCapa = false;
+				return true;
+			}
+			offset = ofst;
+			var loader:Loader = new Loader();
+			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onCompleteFotoCapa);
 			var context: LoaderContext = new LoaderContext();
 			context.checkPolicyFile = true;
 			ExternalInterface.call("console.log",'temp_avatar_url');
@@ -348,7 +392,7 @@ package
 			}else {
 				proporcao = fotoPerfil.width / fotoPerfil.height;
 				
-				fotoPerfil.height = 636;
+				fotoPerfil.height = 570;
 				fotoPerfil.width = fotoPerfil.height * proporcao;
 				extra_x = (636 - fotoPerfil.width) / 2;
 				
@@ -357,6 +401,13 @@ package
 			facebookFoto.addChild(fotoPerfil);
 			fotoPerfil.x = 66+extra_x;
 			fotoPerfil.y = 139;
+		}		
+		
+		public function onCompleteFotoCapa(event:Event){
+			isFotoCapaReady = true;
+			fotoCapa = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
+			
+
 		}
 		
 		function onCompleteAvatar (event:Event):void
@@ -385,49 +436,11 @@ package
 			circle.x = avatar.x+36;
 			circle.y = avatar.y + 36;
 			
-			//var avatarListaCel:Bitmap = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
-			//avatarListaCel.width = 40;
-			//avatarListaCel.height = 40;
-			//avatarListaCel.smoothing = true;
-				
-			//baseListaCel.addChild(avatarListaCel);
-			
-			//var circleListaCel:Sprite = new Sprite();
-			//circleListaCel.graphics.lineStyle(1, 0x000000); 
-			//circleListaCel.graphics.beginFill(0x0000ff); 
-			//circleListaCel.graphics.drawCircle(0, 0, 20); 
-			//circleListaCel.graphics.endFill(); 
-			//baseListaCel.addChild(circleListaCel);
-			//avatarListaCel.cacheAsBitmap = true;
-			//circleListaCel.cacheAsBitmap = true;
-			//avatarListaCel.mask = circleListaCel;
 
-			//avatarListaCel.x = 13;
-			//avatarListaCel.y = 47;
-			//circleListaCel.x = avatarListaCel.x+20;
-			//circleListaCel.y = avatarListaCel.y + 20;
 			
-			var fotoFace = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
-			fotoFace.width = 180;
-			fotoFace.height = 180;
-			fotoFace.smoothing = true;
-				
-			facebookCapa.addChild(fotoFace);
+			fotoFace = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
 
-			fotoFace.x = 33;
-			fotoFace.y = 369;
 			
-			
-			//var avatarComent = new Bitmap(Bitmap(LoaderInfo(event.target).content).bitmapData);
-			//avatarComent.width = 50;
-			//avatarComent.height = 50;
-			//avatarComent.smoothing = true;
-				
-			//comentarios.addChild(avatarComent);
-
-			//avatarComent.x = 0;
-			//avatarComent.y = 0;
-
 		}
 		
 		public function checkTime(e:LoaderEvent = null) {
