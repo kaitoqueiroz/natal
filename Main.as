@@ -136,7 +136,7 @@ package
 		}
 		
 		public function videoCompleto(e) {
-			navigateToURL( new URLRequest( '/compartilhar' ),'_self' );
+			navigateToURL( new URLRequest( 'compartilhar' ),'_self' );
 		}
 		
 		public function videoBufferFull(e){

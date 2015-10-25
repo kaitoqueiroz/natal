@@ -54,10 +54,8 @@ function fb_login() {
       			FB.api("/"+dados.id+"/picture?type=large",
       				function (foto_perfil_grande) {
       					console.log(foto_perfil_grande);
-      					$('.back').hide();
       					$('.top').hide();
       					$('.fullscreen-bg').hide();
-      					$('.logo_natal').hide();
       					$('.logo_gazin').hide();
       					$('.botao-login').hide();
       					$('.middle').hide();
