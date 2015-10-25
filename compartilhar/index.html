@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="google" value="notranslate">
+  <meta property="og:url"           content="http://kaitoqueiroz.com/projnatal" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="Gazin - O natal mais azul do brasil" />
+  <meta property="og:description"   content="Your description" />
+  <meta property="og:image"         content="../img/logo-natal.png" />
 
   <title>Gazin - O natal mais azul do Brasil!</title>
 
@@ -11,15 +16,30 @@
   <script>
     window.console = window.console || function(t) {};
   </script>
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="../js/jquery.min.js"></script>
 </head>
 
 <body>
-  <div class="botao-login"></div>
+<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.5&appId=902494986513607";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <div 
+    class="fb-share-button" 
+    data-title="Gazin - O natal mais azul do brasil" 
+    data-href="http://kaitoqueiroz.com/projnatal" 
+    data-description="http://kaitoqueiroz.com/projnatal" 
+    data-image="../img/logo-natal.png"
+    data-layout="box_count"></div>
 
   <div class="fullscreen-bg">
     <video loop muted autoplay class="fullscreen-bg__video">
-        <source src="video/bg_video.mp4" type="video/mp4">
+        <source src="../video/bg_video.mp4" type="video/mp4">
     </video>
   </div>
 </body>

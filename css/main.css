@@ -491,3 +491,14 @@ input[type="checkbox"]:focus{
   height:100vh;
   z-index: 20;
 }
+
+.fb-share-button{ 
+  height: 246px;
+  left: 50%;
+  margin-left: -313px;
+  position: absolute;
+  text-align: center;
+  top: 296px;
+  width: 637px;
+  z-index: 1;
+}
