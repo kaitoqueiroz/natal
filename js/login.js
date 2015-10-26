@@ -55,11 +55,17 @@ function fb_login() {
       				function (foto_perfil_grande) {
       					console.log(foto_perfil_grande);
       					$('.top').hide();
+      					$('.top').html('');
+      					$('.fullscreen-bg').html('');
       					$('.fullscreen-bg').hide();
       					$('.logo_gazin').hide();
+      					$('.logo_gazin').html('');
       					$('.botao-login').hide();
+      					$('.botao-login').html('');
       					$('.middle').hide();
+      					$('.middle').html('');
       					$('.desejos').hide();
+      					$('.desejos').html('');
       					$('#video_natal').css('left','0px');
       					if (foto_perfil_grande && !foto_perfil_grande.error) {
       						document['NatalGazinVideo'].setFotoPerfil(foto_perfil_grande.data.url);

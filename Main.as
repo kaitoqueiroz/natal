@@ -21,6 +21,10 @@ package
     import flash.net.URLRequest;
     import flash.net.URLVariables;
 	
+	
+	
+	import flash.events.KeyboardEvent;
+	
 	/**
 	 * ...
 	 * @author ...
@@ -58,11 +62,15 @@ package
 		public var isFacebookCapa_onStage:Boolean = false;
 		public var isFacebookFoto_onStage:Boolean = false;
 		public var isBufferFull:Boolean = false;
+		
+		
+		public var sem_parar:Boolean = true;
 
 		
 		var avatar:Bitmap;
 		
 		public function Main() {
+
 			
 			Security.loadPolicyFile("https://fbcdn-profile-a.akamaihd.net/crossdomain.xml");
 			Security.allowDomain('*');
@@ -78,10 +86,11 @@ package
 			ExternalInterface.addCallback("setLocal",setLocal);
 			ExternalInterface.addCallback("setEnsino",setEnsino);
 			ExternalInterface.addCallback("setRelacionamento",setRelacionamento);
+			ExternalInterface.addCallback("setTempo",setTempo);
 
 		}
 		
-		
+
 		public function setLocal(local){
 			ExternalInterface.call("console.log", local);
 			var local_tf = new TextField();
@@ -138,10 +147,44 @@ package
 		public function videoCompleto(e) {
 			navigateToURL( new URLRequest( 'compartilhar' ),'_self' );
 		}
+	
 		
 		public function videoBufferFull(e){
 			isBufferFull = true;
 			stage.removeChild(carregando_mc);
+		}
+		
+		private function keyPress(e) {
+			
+
+			if (e.keyCode == 32) {
+				sem_parar = false;
+				video.playVideo();
+			}
+			if (e.keyCode == 13) {
+				sem_parar = true;
+				video.playVideo();
+			}
+			if(e.keyCode == 39){
+				video.gotoVideoTime(18);
+			}
+		}
+		public function pausar(e) {
+			ExternalInterface.call("console.log", video.videoTime);
+			if(video.videoPaused){
+				video.playVideo();
+			}else {	
+				video.pauseVideo();
+			}
+			
+		}
+		public function setTempo(val) {
+			
+			video.gotoVideoTime(val);
+			ExternalInterface.call("console.log", 'Video Time:'+video.videoTime);
+		}
+		public function videoPause(e){
+			ExternalInterface.call("console.log", 'Video Time:'+video.videoTime);
 		}
 		
 		function init(e:Event = null) {
@@ -156,7 +199,7 @@ package
 				"container":stage,
 				"volume":1
 			});
-			
+			video.addEventListener("videoPause", videoPause);
 			video.addEventListener("videoComplete",videoCompleto),
 			video.addEventListener("videoBufferFull",videoBufferFull),
 
@@ -238,6 +281,7 @@ package
 		}
 		
 		public function checkReady(e) {
+			
 			var proporcao = 0;
 			if (isAvatarReady && isFotoPerfilReady && isFotoCapaReady && isBufferFull) {
 				
@@ -287,20 +331,12 @@ package
 
 				video.playVideo();	
 				stage.addEventListener(MouseEvent.CLICK, pausar);
+				stage.addEventListener(KeyboardEvent.KEY_UP, keyPress);
 				
 				video.volume = 1;
 			}
 		}
-		
-		public function pausar(e) {
 
-			if(video.videoPaused){
-				video.playVideo();
-			}else {	
-				video.pauseVideo();
-			}
-			
-		}
 		
 		public function setEmail(value) {
 			var emailListaCel = new TextField();
@@ -467,10 +503,14 @@ package
 		}
 		
 		public function checkTime(e:LoaderEvent = null) {
+			//ExternalInterface.call("console.log", 'CHECK Video Time:'+video.videoTime);
+			if (sem_parar == false) {
+				video.pauseVideo();
+			}	
 			
-				
-			if (video.videoTime >= 4.36 && video.videoTime < 8.785) {
+			if (video.videoTime >= 4.36 && video.videoTime < 8.75) {
 				if (!isCelmsg_onStage) {
+					//ExternalInterface.call("console.log", 'ENTROU 1');
 					isCelmsg_onStage = true
 					stage.addChild(celmsg_dist);
 					celmsg_dist.alpha = 0.8;
@@ -485,10 +525,11 @@ package
 					celmsg_dist.brY = 575.5;
 				}
 
-			}else if (video.videoTime >= 12.346 && video.videoTime <= 15.965) 
+			}else if (video.videoTime >= 12.36 && video.videoTime <= 16) 
 			{
 				if (!isBaseListaCel_onStage) 
 				{
+					//ExternalInterface.call("console.log", 'ENTROU 2');
 					isBaseListaCel_onStage = true;
 					stage.addChild(baseListaCel_dist);
 					baseListaCel_dist.alpha = 0.8;
@@ -496,10 +537,11 @@ package
 					baseListaCel_dist.tlX = 927.25; baseListaCel_dist.tlY = 211.7; baseListaCel_dist.trX = 1173.15; baseListaCel_dist.trY = 251; baseListaCel_dist.blX = 864.75; baseListaCel_dist.blY = 652.1; baseListaCel_dist.brX = 1108.65; baseListaCel_dist.brY = 696.45;
 				}
 			
-			}else if (video.videoTime >= 23 && video.videoTime <= 28.196) 
+			}else if (video.videoTime >= 23.04 && video.videoTime <= 28.21) 
 			{
 				if (!isFacebookCapa_onStage) 
 				{
+					//ExternalInterface.call("console.log", 'ENTROU 3');
 					isFacebookCapa_onStage = true;
 					stage.addChild(facebookCapa_dist);
 					facebookCapa_dist.alpha = 0.8;
@@ -507,10 +549,11 @@ package
 					facebookCapa_dist.tlX = 710.65; facebookCapa_dist.tlY = 14.25; facebookCapa_dist.trX = 1167.15; facebookCapa_dist.trY = 81.35; facebookCapa_dist.blX = 623.2; facebookCapa_dist.blY = 612.05; facebookCapa_dist.brX = 1057.35; facebookCapa_dist.brY = 705.6;
 
 				}
-			}else if (video.videoTime >= 30.954 && video.videoTime <= 33.76) 
+			}else if (video.videoTime >= 30.98 && video.videoTime < 33.783) 
 			{
 				if (!isFacebookFoto_onStage) 
 				{
+					//ExternalInterface.call("console.log", 'ENTROU 4');
 					isFacebookFoto_onStage = true;
 					stage.addChild(facebookFoto_dist);
 					facebookFoto_dist.alpha = 0.7;
@@ -525,9 +568,10 @@ package
 					facebookFoto_dist.brY = 585.6;
 				}
 
-			}else if (video.videoTime >= 37.337 && video.videoTime <= 39.345) 
+			}else if (video.videoTime >= 37.354 && video.videoTime <= 39.35) 
 			{
 				if (!isTelaSistema_onStage) {
+					//ExternalInterface.call("console.log", 'ENTROU 5');
 					isTelaSistema_onStage = true;
 					stage.addChild(telaSistema_dist);
 					telaSistema_dist.alpha = 0.7;
@@ -536,10 +580,10 @@ package
 				}
 			}else {
 				if (isCelmsg_onStage) { stage.removeChild(celmsg_dist); isCelmsg_onStage = false; }
-				if (isBaseListaCel_onStage) { stage.removeChild(baseListaCel_dist); isBaseListaCel_onStage = false; }
-				if (isFacebookCapa_onStage) { stage.removeChild(facebookCapa_dist); isFacebookCapa_onStage=false}
-				if (isFacebookFoto_onStage) { stage.removeChild(facebookFoto_dist); isFacebookFoto_onStage = false; }
-				if (isTelaSistema_onStage) { stage.removeChild(telaSistema_dist); isTelaSistema_onStage = false; }
+				if (isBaseListaCel_onStage) { stage.removeChild(baseListaCel_dist); isBaseListaCel_onStage = false;}
+				if (isFacebookCapa_onStage) { stage.removeChild(facebookCapa_dist); isFacebookCapa_onStage = false; }
+				if (isFacebookFoto_onStage) { stage.removeChild(facebookFoto_dist); isFacebookFoto_onStage = false;}
+				if (isTelaSistema_onStage) { stage.removeChild(telaSistema_dist); isTelaSistema_onStage = false;}
 			}
 		}
 		
