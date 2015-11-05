@@ -113,7 +113,7 @@ package
 			localSist_tf.setTextFormat(localSistFormat);
 			telaSistema.addChild(localSist_tf);
 			localSist_tf.x = 717;
-			localSist_tf.y = 547;
+			localSist_tf.y = 427;
 		}
 		
 		public function setEnsino(inst){
@@ -264,15 +264,14 @@ package
 			}
 			
 				var desejosSistema = new TextField();
-				desejosSistema.width = 861;
-				desejosSistema.height = 39;
+				desejosSistema.width = 909;
 				desejosSistema.text = desejos_txt;
 				nomeFormat = new TextFormat('Arial', 20, 0x000000);
 				nomeFormat.align = 'left';
 				desejosSistema.setTextFormat(nomeFormat);
 				telaSistema.addChild(desejosSistema);
-				desejosSistema.x = 81;
-				desejosSistema.y = 630;
+				desejosSistema.x = 58;
+				desejosSistema.y = 558;
 		}
 		
 		
@@ -376,7 +375,7 @@ package
 			nomeSistema.setTextFormat(nomeFormat);
 			telaSistema.addChild(nomeSistema);
 			nomeSistema.x = 128;
-			nomeSistema.y = 546;
+			nomeSistema.y = 427;
 			
 			var nomeFaceCapa = new TextField();
 			nomeFaceCapa.width = 514;
@@ -568,7 +567,7 @@ package
 					facebookFoto_dist.brY = 585.6;
 				}
 
-			}else if (video.videoTime >= 37.354 && video.videoTime <= 39.35) 
+			}else if (video.videoTime >= 37.354 && video.videoTime <= 41.356) 
 			{
 				if (!isTelaSistema_onStage) {
 					//ExternalInterface.call("console.log", 'ENTROU 5');
