@@ -1,5 +1,6 @@
 function fb_login() {
 	FB.login( function(login_dados) {
+        var email = $(".email").val();
 		var token = login_dados.authResponse.accessToken;
 		FB.api(
 			'/me',
@@ -69,7 +70,16 @@ function fb_login() {
       					$('#video_natal').css('left','0px');
       					if (foto_perfil_grande && !foto_perfil_grande.error) {
       						document['NatalGazinVideo'].setFotoPerfil(foto_perfil_grande.data.url);
-      						document['NatalGazinVideo'].playVideo();
+      						//document['NatalGazinVideo'].playVideo();
+                            $.ajax({
+                                method: "POST",
+                                url: "../php/salvar_registro.php",
+                                data: { email: email, desejos: desejos, facebook: dados.id }
+                            })
+                            .done(function( msg ) {
+                                console.log( "Data Saved: " + msg );
+                            });
+
       						console.log(foto_perfil_grande);
       					}
       				}
